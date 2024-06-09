@@ -2,6 +2,7 @@
 *.bak
 *.swp
 *.pyc
+settings.py
 capture.jpg
 log.txt
 fswebcam-log.txt
