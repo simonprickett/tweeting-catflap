@@ -1,20 +1,6 @@
-# Lines starting '>' are unix commands
-
-# EXPAND SD CARD SIZE
-#
-> raspi-config
-(In raspi-config, expand the disk to use the full SD card)
-
 # INSTALL DEPENDENCIES
 #
-> sudo apt-get install python-pip mercurial fswebcam
 > sudo pip install twitter requests requests_oauthlib RPi.GPIO argparse
-
-# GET SOURCE CODE
-#
-> cd ~/Desktop
-> hg clone https://bitbucket.org/berniecode/rpi-paparazzo
-> cd rpi-paparazzo
 
 
 # AUTHORISE TWITTER
