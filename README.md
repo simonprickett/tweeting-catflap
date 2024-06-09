@@ -121,11 +121,19 @@ sudo apt install python3-twython
 
 ## Install the Daphne Flap Project
 
-TODO - will add this section when ready.
+Now it's time to get the code for the project from GitHub and install it on the Raspberry Pi.  At the terminal, type the following commands:
+
+```bash
+cd ~/Desktop
+git clone https://github.com/simonprickett/tweeting-catflap.git
+cd tweeting-catflap
+```
+
+Keep this terminal open.  The sections that follow assume that you have a terminal open with the current directory being `~/Desktop/tweeting-catflap`.
 
 ## Test the Camera with the Project Script
 
-In the terminal:
+Enter the following command at the terminal:
 
 ```bash
 ./capture-image.sh
@@ -142,6 +150,10 @@ Once you've verified that the image is good, delete it:
 ```bash
 rm capture.jpg
 ```
+
+## Configure the Project for Twitter API Access
+
+TODO
 
 ## Plug in the Cat Flap
 
