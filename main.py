@@ -1,5 +1,3 @@
-
-
 from subprocess import call
 from datetime import datetime
 from grammar import Grammar
