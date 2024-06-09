@@ -3,5 +3,7 @@
 *.swp
 *.pyc
 capture.jpg
+log.txt
+fswebcam-log.txt
 .DS_Store
 venv/
