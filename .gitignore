@@ -1,5 +1,7 @@
 *.tmp
 *.bak
 *.swp
+*.pyc
+capture.jpg
 .DS_Store
 venv/
