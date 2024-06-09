@@ -1,10 +1,10 @@
 # INSTALL DEPENDENCIES
-#
+#  SIMON - do we need any of these?
 > sudo pip install twitter requests requests_oauthlib RPi.GPIO argparse
 
 
 # AUTHORISE TWITTER
-#
+# SIMON - replace with Twython script?
 # For this step you'll need the Python 'twitter' library, which we don't use for posting tweets
 # just for obtaining an OAuth key.
 > pip install twitter
@@ -36,7 +36,7 @@ sudo python main.py
 # ^ this should enter a loop, posting a message whenever the door sensor is opened
 
 # INSTALL A CRON SCRIPT
-#
+# SIMON - do we want this or a service?
 > crontab -e
 # then add this line:
 @reboot /path to rpi-paparazzo folder/startup.sh
