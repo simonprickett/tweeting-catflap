@@ -38,6 +38,6 @@ class GPIOWatcher(object):
 
 if __name__ == "__main__":
     def printMessage():
-        print "Change detected!"
+        print("Change detected!")
     watcher = GPIOWatcher(7, onChange=printMessage)
     watcher.enter_loop()
