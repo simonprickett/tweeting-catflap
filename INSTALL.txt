@@ -29,10 +29,6 @@ oauth_token_secret = 'paste second line here'
 # TEST IT.
 #
 
-./capture.sh
-# ^ this should capture an image from the webcam and save it as capture.jpg.
-# If it doesn't, figure out why. You're on your own here, webcams on linux are tricksome
-
 sudo python main.py --test
 # ^ this should post a single message to twitter with a photo
 
