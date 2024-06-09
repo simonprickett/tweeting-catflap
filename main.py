@@ -11,13 +11,13 @@ import sys
 try:
     import settings
 except ImportError:
-    print "Could not import settings module, did you create one?"
+    print("Could not import settings module, did you create one?")
     exit()
 
 try:
     from gpio_watcher import GPIOWatcher
 except ImportError:
-    print "Import GPIOWatcher failed, the script will only work in test mode"
+    print("Import GPIOWatcher failed, the script will only work in test mode.")
 
 
 def goGoPaparazzo():
@@ -30,21 +30,21 @@ def goGoPaparazzo():
     #    print "Yawn, I'm asleep. Wake me up when it's daytime"
     #    return
     
-    print "Activating Paparazzo at", timestamp
+    print(f"Activating Paparazzo at {timestamp}")
     
     grammar = Grammar.from_file("grammar.txt")
     while True:
         message = grammar.generate()
         if len(message) < 252: # allow space for picture URL
             break
-    print "Message:", message
+    print(f"Message: {message}")
     
     # capture image to capture.jpg
     call(["./capture-image.sh"], shell=True)
     
     # stop here if image capture failed
     if not os.path.exists("capture.jpg"):
-        print "Error - no capture.jpg recorded"
+        print("Error - no capture.jpg recorded")
         return
 
     # post to twitter
@@ -72,4 +72,4 @@ if __name__ == "__main__":
             try:
                 watcher.enter_loop()
             except Exception as e:
-                print "Error:", e
+                print("Error: {e}")

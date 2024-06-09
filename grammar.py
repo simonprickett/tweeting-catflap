@@ -73,5 +73,5 @@ if __name__ == "__main__":
         exit(1)
     
     grammar = Grammar.from_file(sys.argv[1])
-    print grammar.generate()
+    print(grammar.generate())
     
