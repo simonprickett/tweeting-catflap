@@ -85,10 +85,16 @@ Should return something like `git version 2.39.2`.  Any version is fine!
 
 ## Install the Web Cam Software
 
-This project uses a USB web camera, which needs some additional software that doesn't come with Raspberry Pi OS.  From the terminal, enter the command:
+This project uses a USB web camera, which needs some additional software that doesn't come with Raspberry Pi OS.  From the terminal, enter the commands:
 
 ```bash
 sudo apt install fswebcam
+```
+
+then
+
+```bash
+sudo apt install gir1.2-peas-1.0
 ```
 
 Connect the camera to one of the USB ports on the Pi.
