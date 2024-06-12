@@ -161,9 +161,18 @@ rm capture.jpg
 
 TODO
 
-## Plug in the Cat Flap
+## Plug in the Cat Flap and Test that it Triggers the Pi
 
-TODO
+TODO wiring instructions and sample image.
+
+Once you have everything wired up, turn the Pi back on and let it boot.  Start a new Terminal session and enter the following commands:
+
+```bash
+cd ~/Desktop/tweeting-catflap
+sudo python gpio_watcher.py
+```
+
+Hopefully, opening and closing the cat flap causes the code to output `Change detected!`.  If it does, then exit back to the command prompt by pressing Ctrl-C.  If you don't see any output, check the wiring and pin selection on the Raspberry Pi carefully, make any necessary adjustments and try again.
 
 ## Start the Project
 
