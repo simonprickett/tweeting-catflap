@@ -3,7 +3,7 @@ from datetime import datetime
 from grammar import Grammar
 import os, shutil
 
-from twython import Twython
+from twython import Twython, TwythonError
 import sys
 
 try:
@@ -46,13 +46,20 @@ def goGoPaparazzo():
         return
 
     # post to twitter
-    twitter = Twython(
-        app_key = settings.app_key,
-        app_secret = settings.app_secret,
-        oauth_token = settings.oauth_token,
-        oauth_token_secret = settings.oauth_token_secret
-    )
-    twitter.update_status_with_media(status=message, media=open("capture.jpg", 'rb'))
+    try:
+        twitter = Twython(
+            app_key = settings.app_key,
+            app_secret = settings.app_secret,
+            oauth_token = settings.oauth_token,
+            oauth_token_secret = settings.oauth_token_secret
+        )
+
+        photo = open("capture.jpg", "rb")
+        response = twitter.upload_media(media=photo)
+        print(response)
+        twitter.update_status(status=message, media_ids=[response["media_id"]])
+    except TwythonError as e:
+        print(e)
 
     # archive the image and text
     shutil.move("capture.jpg", "history/%s.jpg" % timestamp)
