@@ -161,6 +161,34 @@ rm capture.jpg
 
 TODO
 
+```bash
+python twitter_auth.py --key YOUR_KEY_HERE --secret YOUR_SECRET_HERE
+```
+
+TODO
+
+```bash
+{'oauth_token': '**REDACTED**', 'oauth_token_secret': '**REDACTED**', 'oauth_callback_confirmed': 'true', 'auth_url': 'https://api.twitter.com/oauth/authenticate?oauth_token=**REDACTED**'}
+Created settings.py
+```
+
+TODO
+
+```bash
+cat settings.py
+```
+
+TODO
+
+```python
+app_key="**REDACTED**"
+app_secret="**REDACTED**"
+oauth_token="**REDACTED**"
+oauth_token_secret="**REDACTED**"
+```
+
+Treat these values like passwords.  Don't share them or commit them to GitHub.
+
 ## Plug in the Cat Flap and Test that it Triggers the Pi
 
 TODO wiring instructions and sample image.
@@ -175,6 +203,34 @@ sudo python gpio_watcher.py
 Hopefully, opening and closing the cat flap causes the code to output `Change detected!`.  If it does, then exit back to the command prompt by pressing Ctrl-C.  If you don't see any output, check the wiring and pin selection on the Raspberry Pi carefully, make any necessary adjustments and try again.
 
 ## Start the Project
+
+```bash
+cd ~/Desktop/tweeting-catflap
+```
+
+The first time you start the project, create a `history` folder where old pictures will be stored.
+
+```bash
+mkdir history
+```
+
+Now, start the project:
+
+```bash
+sudo python main.py
+```
+
+All being well, when you trigger the cat flap you should see output similar to this:
+
+```
+TODO
+```
+
+And hopefully a new Tweet on the Twitter account's timeline.
+
+Stop the project by pressing Ctrl-C.
+
+## Set the Project to Run Automatically when the Pi Boots
 
 TODO
 
