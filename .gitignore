@@ -9,3 +9,4 @@ fswebcam-log.txt
 .DS_Store
 venv/
 history/
+__pycache__/
