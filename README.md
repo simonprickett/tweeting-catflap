@@ -122,7 +122,7 @@ rm capture.jpg
 Install the extra Python libraries needed for the project.  Enter the following command at the terminal:
 
 ```bash
-sudo apt install python3-twython
+sudo apt install python3-tweepy
 ```
 
 ## Install the Daphne Flap Project
