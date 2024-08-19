@@ -5,3 +5,4 @@ set brightness=100%
 no-banner
 delay 0.5
 skip 2
+jpeg 80
