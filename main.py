@@ -1,3 +1,4 @@
+from atproto import Client
 from subprocess import call
 from datetime import datetime
 from grammar import Grammar
@@ -45,25 +46,44 @@ def goGoPaparazzo():
         print("Error - no capture.jpg recorded")
         return
 
-    # post to twitter
-    twitter2 = tweepy.Client(
-        consumer_key = settings.app_key,
-        consumer_secret = settings.app_secret,
-        access_token = settings.oauth_token,
-        access_token_secret = settings.oauth_token_secret
-    )
+    if settings.post_twitter == True:
+        # post to twitter
+        twitter2 = tweepy.Client(
+            consumer_key = settings.app_key,
+            consumer_secret = settings.app_secret,
+            access_token = settings.oauth_token,
+            access_token_secret = settings.oauth_token_secret
+        )
 
-    auth = tweepy.OAuth1UserHandler(
-        consumer_key = settings.app_key,
-        consumer_secret = settings.app_secret,
-        access_token = settings.oauth_token,
-        access_token_secret = settings.oauth_token_secret
-    )
+        auth = tweepy.OAuth1UserHandler(
+            consumer_key = settings.app_key,
+            consumer_secret = settings.app_secret,
+            access_token = settings.oauth_token,
+            access_token_secret = settings.oauth_token_secret
+        )
 
-    twitter1 = tweepy.API(auth)
-    media = twitter1.media_upload("capture.jpg")
-    twitter2.create_tweet(text=message, media_ids = [ media.media_id_string ])
+        twitter1 = tweepy.API(auth)
+        media = twitter1.media_upload("capture.jpg")
+        twitter2.create_tweet(text=message, media_ids = [ media.media_id_string ])
 
+        print("Posted to Twitter.")
+
+    if settings.post_bluesky == True:
+        # post to bluesky
+        client = Client(base_url="https://bsky.social")
+        client.login(settings.bluesky_user, settings.bluesky_pass)
+
+        with open("capture.jpg", "rb") as c:
+            img_data = c.read()
+
+        client.send_image(
+            text = message,
+            image = img_data,
+            image_alt = "Daphne the cat using her internet connected catflap."
+        )
+
+        print("Posted to Bluesky.")
+ 
     # archive the image and text
     shutil.move("capture.jpg", "history/%s.jpg" % timestamp)
     with open("history/%s.txt" % timestamp, "w") as f:
@@ -80,4 +100,4 @@ if __name__ == "__main__":
             try:
                 watcher.enter_loop()
             except Exception as e:
-                print("Error: {e}")
+                print(f"Error: {e}")

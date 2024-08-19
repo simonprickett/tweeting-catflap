@@ -121,10 +121,11 @@ rm capture.jpg
 
 ## Install Python Libraries
 
-Install the extra Python libraries needed for the project.  Enter the following command at the terminal:
+Install the extra Python libraries needed for the project.  Enter the following commands at the terminal:
 
 ```bash
 sudo apt install python3-tweepy
+sudo pip install atproto --break-system-packages
 ```
 
 ## Install the Daphne Flap Project
@@ -159,6 +160,16 @@ Once you've verified that the image is good, delete it:
 rm capture.jpg
 ```
 
+## Configure the Project for Bluesky API Access
+
+You will need your login and password for Bluesky.  Add them to `settings.py` by adding the following lines then saving your changes:
+
+```python
+bluesky_user="<YOUR USER NAME OR DOMAIN e.g. simonprickett.bsky.social>"
+bluesky_pass="<YOUR PASSWORD>"
+post_bluesky=True
+```
+
 ## Configure the Project for Twitter API Access
 
 TODO
@@ -187,6 +198,7 @@ app_key="**REDACTED**"
 app_secret="**REDACTED**"
 oauth_token="**REDACTED**"
 oauth_token_secret="**REDACTED**"
+post_twitter=True
 ```
 
 Treat these values like passwords.  Don't share them or commit them to GitHub.
@@ -228,7 +240,7 @@ All being well, when you trigger the cat flap you should see output similar to t
 TODO
 ```
 
-And hopefully a new Tweet on the Twitter account's timeline.
+And hopefully a new Tweet on the Twitter account's timeline and in Bluesky, depending on which social network posts are enabled in `settings.py`.
 
 Stop the project by pressing Ctrl-C.
 
