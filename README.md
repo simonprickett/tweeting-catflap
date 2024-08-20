@@ -172,6 +172,8 @@ bluesky_pass="<YOUR PASSWORD>"
 post_bluesky=True
 ```
 
+If you are using MFA on your Bluesky account (you should be) then you should create a separate App Password for this project and use that here.
+
 ## Configure the Project for Twitter API Access
 
 TODO
