@@ -4,6 +4,8 @@
 
 This is an extension of the original tweeting-catflap project by Bernie Sumption ([original project repository](https://github.com/BernieSumption/tweeting-catflap)).
 
+Follow Daphne's comings and goings at the original [Twitter account](https://x.com/DaphneFlap), and now also on [Bluesky](https://bsky.app/profile/daphnethecat.com).
+
 ## Overview
 
 TODO, what is this and what do you need to use it?
