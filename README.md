@@ -128,6 +128,7 @@ Install the extra Python libraries needed for the project.  Enter the following 
 ```bash
 sudo apt install python3-tweepy
 sudo pip install atproto --break-system-packages
+sudo pip install pillow --break-system-packages
 ```
 
 ## Install the Daphne Flap Project
