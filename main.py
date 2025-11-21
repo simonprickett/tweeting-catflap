@@ -1,4 +1,5 @@
-from atproto import Client
+from PIL import Image
+from atproto import Client, models
 from subprocess import call
 from datetime import datetime
 from grammar import Grammar
@@ -70,16 +71,25 @@ def goGoPaparazzo():
 
     if settings.post_bluesky == True:
         # post to bluesky
+        from PIL import Image
+        from atproto import models
+    
         client = Client(base_url="https://bsky.social")
         client.login(settings.bluesky_user, settings.bluesky_pass)
 
         with open("capture.jpg", "rb") as c:
             img_data = c.read()
-
+    
+        with Image.open("capture.jpg") as im:
+            width, height = im.size
+    
+        aspect_ratio = models.AppBskyEmbedDefs.AspectRatio(height=height, width=width)
+    
         client.send_image(
             text = message,
             image = img_data,
-            image_alt = "Daphne the cat using her internet connected catflap."
+            image_alt = "Daphne the cat using her internet connected catflap.",
+            image_aspect_ratio = aspect_ratio
         )
 
         print("Posted to Bluesky.")
