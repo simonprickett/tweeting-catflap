@@ -79,7 +79,7 @@ def goGoPaparazzo():
 
         with open("capture.jpg", "rb") as c:
             img_data = c.read()
-    
+
         with Image.open("capture.jpg") as im:
             width, height = im.size
     
