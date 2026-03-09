@@ -234,6 +234,8 @@ TODO wiring instructions and sample image.
 
 Once you have everything wired up, turn the Pi back on and let it boot.  Start a new Terminal session and enter the following commands:
 
+TODO does this need root permissions anymore?
+
 ```bash
 cd ~/Desktop/tweeting-catflap
 sudo python gpio_watcher.py
@@ -253,7 +255,11 @@ The first time you start the project, create a `history` folder where old pictur
 mkdir history
 ```
 
+TODO update for venv and it probably doesn't need root permissions any more.
+s
 Now, start the project:
+
+TODO UPDATE THIS TO USE STARTUP.SH?
 
 ```bash
 sudo python main.py
