@@ -1,6 +1,6 @@
 # Tweeting Cat Flap
 
-![Daphne at the cat flap](catflap.jpg)
+![Daphne at the cat flap](catflap.png)
 
 This is an extension of the original tweeting-catflap project by Bernie Sumption ([original project repository](https://github.com/BernieSumption/tweeting-catflap)).
 
