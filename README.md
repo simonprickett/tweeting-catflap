@@ -121,15 +121,6 @@ Once you've verified that the image is good, delete it:
 rm capture.jpg
 ```
 
-## Install Python Libraries
-
-Install the extra Python libraries needed for the project.  Enter the following commands at the terminal:
-
-```bash
-sudo apt install python3-tweepy
-sudo pip install atproto --break-system-packages
-```
-
 ## Install the Daphne Flap Project
 
 Now it's time to get the code for the project from GitHub and install it on the Raspberry Pi.  At the terminal, type the following commands:
@@ -141,6 +132,36 @@ cd tweeting-catflap
 ```
 
 Keep this terminal open.  The sections that follow assume that you have a terminal open with the current directory being `~/Desktop/tweeting-catflap`.
+
+## Create and Activate a Python Virtual Enviroment
+
+To ensure that the Python libraries we need to install run in a clean environment and don't affect other Python projects or the operating system, we're going to create and activate a Virtual Environment.
+
+Enter the following commands:
+
+```bash
+python -m venv venv
+```
+
+(this may take a few seconds to complete, and will produce no output).
+
+```bash
+. ./venv/bin/activate
+```
+
+(note the leading `.` - this is not a mistake!).
+
+Your command prompt should now begin with `(venv)` showing that you're working in a Python virtual environment.
+
+## Install Python Libraries
+
+Install the extra Python libraries needed for the project.  Enter the following command at the terminal:
+
+```bash
+pip install -r requirements.txt
+```
+
+(this may take some time to complete).
 
 ## Test the Camera with the Project Script
 
