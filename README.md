@@ -63,7 +63,7 @@ When it has rebooted, start the terminal and check the Python version with the f
 python --version
 ```
 
-At the time of writing this outputs `Python 3.11.2`.  `3.11.<anything>` is good.
+At the time of writing this outputs `Python 3.13.5`.  `3.13.<anything>` is good.
 
 Now check the version of Pip (a Python package manager):
 
@@ -74,7 +74,7 @@ pip --version
 At the time of writing this outputs:
 
 ```bash
-pip 23.0.1 from /usr/lib/...
+pip 25.1.1 from /usr/lib/...
 ```
 
 `23.<anything>` is good.
@@ -85,7 +85,7 @@ Finally, check that the git command line tools are installed:
 git --version
 ```
 
-Should return something like `git version 2.39.2`.  Any version is fine!
+Should return something like `git version 2.47.3`.  Any version is fine!
 
 ## Install the Web Cam Software
 
