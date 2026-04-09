@@ -1,10 +1,10 @@
 # Tweeting Cat Flap
 
-![Daphne at the cat flap](catflap.jpg)
+![Daphne at the cat flap](catflap.png)
 
 This is an extension of the original tweeting-catflap project by Bernie Sumption ([original project repository](https://github.com/BernieSumption/tweeting-catflap)).
 
-Follow Daphne's comings and goings at the original [Twitter account](https://x.com/DaphneFlap), and now also on [Bluesky](https://bsky.app/profile/daphnethecat.com).
+Follow Daphne's comings and goings on [Bluesky](https://bsky.app/profile/daphnethecat.com) and, historically, on the original [Twitter account](https://x.com/DaphneFlap).
 
 ## Overview
 
@@ -12,7 +12,7 @@ TODO, what is this and what do you need to use it?
 
 ## Install the Operating System
 
-* Install a fresh copy of [Raspberry Pi OS Desktop 64 bit edition](https://www.raspberrypi.com/software/) on the Raspberry Pi 4.
+* Install a fresh copy of [Raspberry Pi OS Desktop 64 bit edition](https://www.raspberrypi.com/software/) on the Raspberry Pi 4 or 5.
 * Configure your wifi details or connect an ethernet cable to the Raspberry Pi.  If you're using the official [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/), you can configure your wifi details whilst installing the operating system.
 
 ## Configure the Operating System
@@ -25,7 +25,7 @@ Start the terminal and enter the following command:
 sudo raspi-config
 ```
 
-The Raspberry Pi configuration application appears.  You should:
+The Raspberry Pi configuration application appears.  If you are booting from an SD card (ignore this if you have an SSD), you should:
 
 * Choose menu option 6 (Advanced Options). 
 * Choose menu option A1 (Expand Filesystem).
@@ -63,7 +63,7 @@ When it has rebooted, start the terminal and check the Python version with the f
 python --version
 ```
 
-At the time of writing this outputs `Python 3.11.2`.  `3.11.<anything>` is good.
+At the time of writing this outputs `Python 3.13.5`.  `3.13.<anything>` is good.
 
 Now check the version of Pip (a Python package manager):
 
@@ -74,10 +74,10 @@ pip --version
 At the time of writing this outputs:
 
 ```bash
-pip 23.0.1 from /usr/lib/...
+pip 25.1.1 from /usr/lib/...
 ```
 
-`23.<anything>` is good.
+`25.<anything>` is good.
 
 Finally, check that the git command line tools are installed:
 
@@ -85,7 +85,7 @@ Finally, check that the git command line tools are installed:
 git --version
 ```
 
-Should return something like `git version 2.39.2`.  Any version is fine!
+Should return something like `git version 2.47.3`.  Any version is fine!
 
 ## Install the Web Cam Software
 
@@ -121,15 +121,6 @@ Once you've verified that the image is good, delete it:
 rm capture.jpg
 ```
 
-## Install Python Libraries
-
-Install the extra Python libraries needed for the project.  Enter the following commands at the terminal:
-
-```bash
-sudo apt install python3-tweepy
-sudo pip install atproto --break-system-packages
-```
-
 ## Install the Daphne Flap Project
 
 Now it's time to get the code for the project from GitHub and install it on the Raspberry Pi.  At the terminal, type the following commands:
@@ -141,6 +132,36 @@ cd tweeting-catflap
 ```
 
 Keep this terminal open.  The sections that follow assume that you have a terminal open with the current directory being `~/Desktop/tweeting-catflap`.
+
+## Create and Activate a Python Virtual Enviroment
+
+To ensure that the Python libraries we need to install run in a clean environment and don't affect other Python projects or the operating system, we're going to create and activate a Virtual Environment.
+
+Enter the following commands:
+
+```bash
+python -m venv venv
+```
+
+(this may take a few seconds to complete, and will produce no output).
+
+```bash
+. ./venv/bin/activate
+```
+
+(note the leading `.` - this is not a mistake!).
+
+Your command prompt should now begin with `(venv)` showing that you're working in a Python virtual environment.
+
+## Install Python Libraries
+
+Install the extra Python libraries needed for the project.  Enter the following command at the terminal:
+
+```bash
+pip install -r requirements.txt
+```
+
+(this may take some time to complete).
 
 ## Test the Camera with the Project Script
 
@@ -176,7 +197,7 @@ If you are using MFA on your Bluesky account (you should be) then you should cre
 
 ## Configure the Project for Twitter API Access
 
-TODO
+TODO - this is also now legacy and won't be updated.
 
 ```bash
 python twitter_auth.py --key YOUR_KEY_HERE --secret YOUR_SECRET_HERE
@@ -215,7 +236,8 @@ Once you have everything wired up, turn the Pi back on and let it boot.  Start a
 
 ```bash
 cd ~/Desktop/tweeting-catflap
-sudo python gpio_watcher.py
+. ./venv/bin/activate
+python gpio_watcher.py
 ```
 
 Hopefully, opening and closing the cat flap causes the code to output `Change detected!`.  If it does, then exit back to the command prompt by pressing Ctrl-C.  If you don't see any output, check the wiring and pin selection on the Raspberry Pi carefully, make any necessary adjustments and try again.
@@ -224,6 +246,12 @@ Hopefully, opening and closing the cat flap causes the code to output `Change de
 
 ```bash
 cd ~/Desktop/tweeting-catflap
+```
+
+If you haven't already activated the Python virtual environment (it's active when your prompt begins `(venv)`), activate it:
+
+```bash
+. ./venv/bin/activate
 ```
 
 The first time you start the project, create a `history` folder where old pictures will be stored.
@@ -235,23 +263,25 @@ mkdir history
 Now, start the project:
 
 ```bash
-sudo python main.py
+python main.py
 ```
 
 All being well, when you trigger the cat flap you should see output similar to this:
 
 ```
-TODO
+Activating Paparazzo at 2026-04-09--20-36-30
+Message: So arrives the ineffable Daphne, how noble is your imperial demeanour. It is my pleasure to let you past.
+Posted to Bluesky.
 ```
 
-And hopefully a new Tweet on the Twitter account's timeline and in Bluesky, depending on which social network posts are enabled in `settings.py`.
+And hopefully a new Tweet on the Twitter account's timeline and in Bluesky, depending on which social network posts are enabled in `settings.py`. The example above only has Bluesky enabled.
 
 Stop the project by pressing Ctrl-C.
 
 ## Set the Project to Run Automatically when the Pi Boots
 
-TODO
+To set up the project as a service that runs automatically on boot, follow the instructions in [`start_on_boot_instructions.md`](./start_on_boot_instructions.md).
 
 ## Periodic Maintenance
 
-TODO
+You'll want to periodically delete old images from the `history` folder to make sure you don't overflow the Pi's storage (although with modern SD cards or SSDs this would take a long time).

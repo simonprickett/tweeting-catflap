@@ -1,4 +1,4 @@
-from atproto import Client
+from atproto import Client, models
 from subprocess import call
 from datetime import datetime
 from grammar import Grammar
@@ -20,27 +20,27 @@ except ImportError:
 
 
 def goGoPaparazzo():
-    
-    # get a pretty date time string 
+
+    # get a pretty date time string
     timestamp = datetime.now().strftime("%Y-%m-%d--%H-%M-%S")
 
     hour = datetime.now().hour
     #if hour < 8 or hour > 17:
     #    print "Yawn, I'm asleep. Wake me up when it's daytime"
     #    return
-    
+
     print(f"Activating Paparazzo at {timestamp}")
-    
+
     grammar = Grammar.from_file("grammar.txt")
     while True:
         message = grammar.generate()
         if len(message) < 252: # allow space for picture URL
             break
     print(f"Message: {message}")
-    
+
     # capture image to capture.jpg
     call(["./capture-image.sh"], shell=True)
-    
+
     # stop here if image capture failed
     if not os.path.exists("capture.jpg"):
         print("Error - no capture.jpg recorded")
@@ -76,19 +76,24 @@ def goGoPaparazzo():
         with open("capture.jpg", "rb") as c:
             img_data = c.read()
 
+        # Values for height and width here should match those in:
+        # fswebcam-config.txt
+        aspect_ratio = models.AppBskyEmbedDefs.AspectRatio(height=1536,width=2048)
+
         client.send_image(
             text = message,
             image = img_data,
-            image_alt = "Daphne the cat using her internet connected catflap."
+            image_alt = "Daphne the cat using her internet connected catflap.",
+            image_aspect_ratio = aspect_ratio
         )
 
         print("Posted to Bluesky.")
- 
+
     # archive the image and text
     shutil.move("capture.jpg", "history/%s.jpg" % timestamp)
     with open("history/%s.txt" % timestamp, "w") as f:
         f.write("%s\n" % message)
-    
+
 
 
 if __name__ == "__main__":
