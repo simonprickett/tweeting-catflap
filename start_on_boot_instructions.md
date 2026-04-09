@@ -4,7 +4,15 @@ The best approach on Raspberry Pi OS is a **systemd service**. It handles "wait 
 
 ## 1. Create the service file
 
-Create `/etc/systemd/system/tweeting-catflap.service` with the following content:
+From the terminal, enter the following command to create and edit a new file:
+
+```bash
+sudo vi /etc/systemd/system/tweeting-catflap.service
+```
+
+In the Vi editor press "i" to enter edit mode.
+
+Paste the following into the editor:
 
 ```ini
 [Unit]
@@ -24,7 +32,13 @@ RestartSec=10
 WantedBy=multi-user.target
 ```
 
+Now press `Esc` to exit edit mode.  
+
+Press `:wq` to save and exit the Vi editor.
+
 ## 2. Enable and start the service
+
+Enter the following commands in the terminal:
 
 ```bash
 sudo systemctl daemon-reload
@@ -36,26 +50,48 @@ sudo systemctl start tweeting-catflap.service
 
 This target is not always enabled by default. Enable the appropriate service depending on your network manager.
 
-If using **systemd-networkd** (headless/lite Pi OS):
-
-```bash
-sudo systemctl enable systemd-networkd-wait-online.service
-```
-
-If using **NetworkManager** (desktop Pi OS):
+If using **NetworkManager** (desktop Pi OS), enter the following command in the terminal:
 
 ```bash
 sudo systemctl enable NetworkManager-wait-online.service
 ```
 
-## Notes
+If using **systemd-networkd** (headless/lite Pi OS), enter the following command in the terminal:
 
-- `WorkingDirectory` is set to the project directory because `main.py` uses relative paths (`capture.jpg`, `history/`, `grammar.txt`, `capture-image.sh`).
-- `ExecStart` calls the venv's Python directly — no need to activate the venv, this is the correct way to use a venv in a service.
-- `Restart=on-failure` with a 10 second delay means if the script crashes (e.g. network blip, API error), systemd will restart it automatically.
+```bash
+sudo systemctl enable systemd-networkd-wait-online.service
+```
+
+## Reboot to test it...
+
+From the terminal:
+
+```bash
+sudo reboot
+```
+
+The Pi will reboot.  When it's started up again, trigger the cat flap and ensure that a new post appears.
 
 ## Checking logs
 
+At any time, you can check the service logs by entering this command in the terminal:
+
 ```bash
 sudo journalctl -u tweeting-catflap -f
+```
+
+Press `Ctrl-C` to stop viewing the latest log entries.
+
+## Stopping / Disabling the Service
+
+If you want to stop the service:
+
+```bash
+sudo systemctl start tweeting-catflap.service
+```
+
+If you want to disable the service so that it no longer runs on boot:
+
+```bash
+sudo systemctl enable tweeting-catflap.service
 ```
