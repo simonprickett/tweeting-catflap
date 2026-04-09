@@ -87,11 +87,11 @@ Press `Ctrl-C` to stop viewing the latest log entries.
 If you want to stop the service:
 
 ```bash
-sudo systemctl start tweeting-catflap.service
+sudo systemctl stop tweeting-catflap.service
 ```
 
 If you want to disable the service so that it no longer runs on boot:
 
 ```bash
-sudo systemctl enable tweeting-catflap.service
+sudo systemctl disable tweeting-catflap.service
 ```
