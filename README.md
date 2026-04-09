@@ -4,7 +4,7 @@
 
 This is an extension of the original tweeting-catflap project by Bernie Sumption ([original project repository](https://github.com/BernieSumption/tweeting-catflap)).
 
-Follow Daphne's comings and goings at the original [Twitter account](https://x.com/DaphneFlap), and now also on [Bluesky](https://bsky.app/profile/daphnethecat.com).
+Follow Daphne's comings and goings on [Bluesky](https://bsky.app/profile/daphnethecat.com) and, historically, on the original [Twitter account](https://x.com/DaphneFlap).
 
 ## Overview
 
@@ -12,7 +12,7 @@ TODO, what is this and what do you need to use it?
 
 ## Install the Operating System
 
-* Install a fresh copy of [Raspberry Pi OS Desktop 64 bit edition](https://www.raspberrypi.com/software/) on the Raspberry Pi 4.
+* Install a fresh copy of [Raspberry Pi OS Desktop 64 bit edition](https://www.raspberrypi.com/software/) on the Raspberry Pi 4 or 5.
 * Configure your wifi details or connect an ethernet cable to the Raspberry Pi.  If you're using the official [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/), you can configure your wifi details whilst installing the operating system.
 
 ## Configure the Operating System
@@ -25,7 +25,7 @@ Start the terminal and enter the following command:
 sudo raspi-config
 ```
 
-The Raspberry Pi configuration application appears.  You should:
+The Raspberry Pi configuration application appears.  If you are booting from an SD card (ignore this if you have an SSD), you should:
 
 * Choose menu option 6 (Advanced Options). 
 * Choose menu option A1 (Expand Filesystem).
@@ -77,7 +77,7 @@ At the time of writing this outputs:
 pip 25.1.1 from /usr/lib/...
 ```
 
-`23.<anything>` is good.
+`25.<anything>` is good.
 
 Finally, check that the git command line tools are installed:
 
@@ -197,7 +197,7 @@ If you are using MFA on your Bluesky account (you should be) then you should cre
 
 ## Configure the Project for Twitter API Access
 
-TODO
+TODO - this is also now legacy and won't be updated.
 
 ```bash
 python twitter_auth.py --key YOUR_KEY_HERE --secret YOUR_SECRET_HERE
@@ -234,11 +234,10 @@ TODO wiring instructions and sample image.
 
 Once you have everything wired up, turn the Pi back on and let it boot.  Start a new Terminal session and enter the following commands:
 
-TODO does this need root permissions anymore?
-
 ```bash
 cd ~/Desktop/tweeting-catflap
-sudo python gpio_watcher.py
+. ./venv/bin/activate
+python gpio_watcher.py
 ```
 
 Hopefully, opening and closing the cat flap causes the code to output `Change detected!`.  If it does, then exit back to the command prompt by pressing Ctrl-C.  If you don't see any output, check the wiring and pin selection on the Raspberry Pi carefully, make any necessary adjustments and try again.
@@ -249,29 +248,33 @@ Hopefully, opening and closing the cat flap causes the code to output `Change de
 cd ~/Desktop/tweeting-catflap
 ```
 
+If you haven't already activated the Python virtual environment (it's active when your prompt begins `(venv)`), activate it:
+
+```bash
+. ./venv/bin/activate
+```
+
 The first time you start the project, create a `history` folder where old pictures will be stored.
 
 ```bash
 mkdir history
 ```
 
-TODO update for venv and it probably doesn't need root permissions any more.
-s
 Now, start the project:
 
-TODO UPDATE THIS TO USE STARTUP.SH?
-
 ```bash
-sudo python main.py
+python main.py
 ```
 
 All being well, when you trigger the cat flap you should see output similar to this:
 
 ```
-TODO
+Activating Paparazzo at 2026-04-09--20-36-30
+Message: So arrives the ineffable Daphne, how noble is your imperial demeanour. It is my pleasure to let you past.
+Posted to Bluesky.
 ```
 
-And hopefully a new Tweet on the Twitter account's timeline and in Bluesky, depending on which social network posts are enabled in `settings.py`.
+And hopefully a new Tweet on the Twitter account's timeline and in Bluesky, depending on which social network posts are enabled in `settings.py`. The example above only has Bluesky enabled.
 
 Stop the project by pressing Ctrl-C.
 
@@ -281,4 +284,4 @@ TODO
 
 ## Periodic Maintenance
 
-TODO
+You'll want to periodically delete old images from the `history` folder to make sure you don't overflow the Pi's storage (although with modern SD cards or SSDs this would take a long time).
