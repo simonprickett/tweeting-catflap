@@ -12,7 +12,7 @@ sudo vi /etc/systemd/system/tweeting-catflap.service
 
 In the Vi editor press "i" to enter edit mode.
 
-Paste the following into the editor:
+Paste the following into the editor (this assumes you installed the code using a user named `daphne`, if your user is named something else, update `/home/daphne` in two locations below to represent your user name):
 
 ```ini
 [Unit]
@@ -23,8 +23,8 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=pi
-WorkingDirectory=/home/pi/Desktop/tweeting-catflap
-ExecStart=/home/pi/Desktop/tweeting-catflap/venv/bin/python main.py
+WorkingDirectory=/home/daphne/Desktop/tweeting-catflap
+ExecStart=/home/daphne/Desktop/tweeting-catflap/venv/bin/python main.py
 Restart=on-failure
 RestartSec=10
 
