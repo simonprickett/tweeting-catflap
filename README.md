@@ -280,7 +280,7 @@ Stop the project by pressing Ctrl-C.
 
 ## Set the Project to Run Automatically when the Pi Boots
 
-TODO
+To set up the project as a service that runs automatically on boot, follow the instructions in [`start_on_boot_instructions.md`](./start_on_boot_instructions.md).
 
 ## Periodic Maintenance
 
