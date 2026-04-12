@@ -169,6 +169,8 @@ pip install -r requirements.txt
 
 (this may take some time to complete).
 
+You may see warnings about packages that can't be uninstalled because they are outside the virtual environment, and errors about dependency conflicts with unrelated system packages (`pyopenssl`, `types-flask-migrate`). These can be ignored — as long as the output ends with `Successfully installed`, everything is fine.
+
 ## Test the Camera with the Project Script
 
 Enter the following command at the terminal:
