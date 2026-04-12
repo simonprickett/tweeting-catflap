@@ -101,8 +101,4 @@ if __name__ == "__main__":
         goGoPaparazzo()
     else:
         watcher = GPIOWatcher(7, onChange=goGoPaparazzo, debounceSeconds=20)
-        while True:
-            try:
-                watcher.enter_loop()
-            except Exception as e:
-                print(f"Error: {e}")
+        watcher.enter_loop()
