@@ -101,6 +101,12 @@ then
 sudo apt install gir1.2-peas-1.0
 ```
 
+then
+
+```bash
+sudo apt install python3-lgpio
+```
+
 Connect the camera to one of the USB ports on the Pi.
 
 Now test the camera.  Enter the command:
@@ -140,7 +146,7 @@ To ensure that the Python libraries we need to install run in a clean environmen
 Enter the following commands:
 
 ```bash
-python -m venv venv
+python -m venv venv --system-site-packages
 ```
 
 (this may take a few seconds to complete, and will produce no output).
