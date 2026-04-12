@@ -1,4 +1,4 @@
-# Tweeting Cat Flap
+# Social Media Cat Flap
 
 ![Daphne at the cat flap](catflap.png)
 
