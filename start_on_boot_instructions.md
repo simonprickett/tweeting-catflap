@@ -7,10 +7,8 @@ The best approach on Raspberry Pi OS is a **systemd service**. It handles "wait 
 From the terminal, enter the following command to create and edit a new file:
 
 ```bash
-sudo vi /etc/systemd/system/tweeting-catflap.service
+sudo mousepad /etc/systemd/system/tweeting-catflap.service
 ```
-
-In the Vi editor press "i" to enter edit mode.
 
 Paste the following into the editor (this assumes you installed the code using a user named `daphne`, if your user is named something else, update `/home/daphne` in two locations below to represent your user name):
 
@@ -32,9 +30,7 @@ RestartSec=10
 WantedBy=multi-user.target
 ```
 
-Now press `Esc` to exit edit mode.  
-
-Press `:wq` to save and exit the Vi editor.
+Save your changes and exit the editor.
 
 ## 2. Enable and start the service
 
