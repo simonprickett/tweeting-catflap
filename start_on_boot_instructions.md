@@ -20,7 +20,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
+User=daphne
 WorkingDirectory=/home/daphne/Desktop/tweeting-catflap
 ExecStart=/home/daphne/Desktop/tweeting-catflap/venv/bin/python main.py
 Restart=on-failure
