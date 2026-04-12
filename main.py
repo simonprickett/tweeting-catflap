@@ -15,8 +15,9 @@ except ImportError:
 
 try:
     from gpio_watcher import GPIOWatcher
-except ImportError:
-    print("Import GPIOWatcher failed, the script will only work in test mode.")
+except Exception as e:
+    print(f"Import GPIOWatcher failed ({e}), the script will only work in test mode.")
+    GPIOWatcher = None
 
 
 def goGoPaparazzo():
@@ -100,9 +101,8 @@ if __name__ == "__main__":
     if "--test" in sys.argv:
         goGoPaparazzo()
     else:
+        if GPIOWatcher is None:
+            print("GPIO not available, cannot run in normal mode.")
+            exit(1)
         watcher = GPIOWatcher(7, onChange=goGoPaparazzo, debounceSeconds=20)
-        while True:
-            try:
-                watcher.enter_loop()
-            except Exception as e:
-                print(f"Error: {e}")
+        watcher.enter_loop()

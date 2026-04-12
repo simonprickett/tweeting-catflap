@@ -101,6 +101,12 @@ then
 sudo apt install gir1.2-peas-1.0
 ```
 
+then
+
+```bash
+sudo apt install python3-lgpio
+```
+
 Connect the camera to one of the USB ports on the Pi.
 
 Now test the camera.  Enter the command:
@@ -140,7 +146,7 @@ To ensure that the Python libraries we need to install run in a clean environmen
 Enter the following commands:
 
 ```bash
-python -m venv venv
+python -m venv venv --system-site-packages
 ```
 
 (this may take a few seconds to complete, and will produce no output).
@@ -162,6 +168,8 @@ pip install -r requirements.txt
 ```
 
 (this may take some time to complete).
+
+You may see warnings about packages that can't be uninstalled because they are outside the virtual environment, and errors about dependency conflicts with unrelated system packages (`pyopenssl`, `types-flask-migrate`). These can be ignored — as long as the output ends with `Successfully installed`, everything is fine.
 
 ## Test the Camera with the Project Script
 
