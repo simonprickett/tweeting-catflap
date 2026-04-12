@@ -15,8 +15,8 @@ except ImportError:
 
 try:
     from gpio_watcher import GPIOWatcher
-except Exception:
-    print("Import GPIOWatcher failed, the script will only work in test mode.")
+except Exception as e:
+    print(f"Import GPIOWatcher failed ({e}), the script will only work in test mode.")
     GPIOWatcher = None
 
 
